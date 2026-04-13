@@ -1,3 +1,4 @@
+from app.routers import rides, stats
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import health, users
@@ -14,3 +15,6 @@ app.add_middleware(
 
 app.include_router(health.router)
 app.include_router(users.router)
+
+app.include_router(rides.router)
+app.include_router(stats.router)
