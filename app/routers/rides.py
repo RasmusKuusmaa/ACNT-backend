@@ -24,3 +24,13 @@ def add_ride(ride: dict, user=Depends(get_user)):
     ride["user_id"] = user_id
 
     return supabase.table("rides").insert(ride).execute().data
+
+@router.post("/bulk")
+def add_rides_bulk(rides: list[dict], user=Depends(get_user)):
+    user_id = user["sub"]
+
+    for ride in rides:
+        ride["user_id"] = user_id
+        ride.pop("id", None)
+
+    return supabase.table("rides").insert(rides).execute().data

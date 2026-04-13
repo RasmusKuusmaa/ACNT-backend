@@ -17,9 +17,7 @@ def get_stats(user=Depends(get_user)):
     rides = query.execute().data
 
     total_km = sum(r["km"] for r in rides)
-    total_sum = total_km * 0.5
 
     return {
         "totalKm": total_km,
-        "totalSum": total_sum
     }
